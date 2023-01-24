@@ -8,7 +8,7 @@ import Root from "./component/Root";
 import { db } from "./firebase";
 import { collection } from "firebase/firestore";
 import HealthInfo from "./component/HealthInfo";
-
+//
 //firebase db의 collection인 fruits를 연결하기
 const healthRef = collection(db, "health");
 
