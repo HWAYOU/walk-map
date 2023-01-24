@@ -1,0 +1,70 @@
+.healthInfo {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.healthInfo .desc {
+  margin: 15px 0 15px 0;
+}
+.healthInfo .info {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  gap: 5px;
+  margin-top: 17px;
+}
+.healthInfo .info label {
+  font-weight: bold;
+  font-size: 17px;
+}
+.healthInfo .info input, .healthInfo .info select, .healthInfo .info textarea {
+  border-radius: 7px;
+  border: none;
+  background-color: #edf2fb;
+  font-family: "Pretendard-Regular";
+}
+.healthInfo .info input:focus, .healthInfo .info textarea:focus {
+  outline-color: #6392ff;
+}
+.healthInfo .info input, .healthInfo .info select {
+  height: 40px;
+  padding: 0 10px;
+}
+.healthInfo .info select {
+  border-right: 8px solid transparent;
+}
+.healthInfo .info textarea {
+  padding: 10px;
+}
+.healthInfo button {
+  width: 150px;
+  height: 40px;
+  margin-top: 30px;
+  border-radius: 7px;
+  border: none;
+  background-color: #abc4ff;
+  cursor: pointer;
+}
+.healthInfo .detail {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  margin: 10px;
+  gap: 5px;
+}
+.healthInfo .button {
+  text-align: center;
+}
+.healthInfo .button button {
+  font-family: "Pretendard-Regular";
+  font-weight: bold;
+  font-size: large;
+  width: 150px;
+  height: 40px;
+  margin: 30px 10px 0 10px;
+  border-radius: 7px;
+  border: none;
+  background-color: #abc4ff;
+  cursor: pointer;
+}

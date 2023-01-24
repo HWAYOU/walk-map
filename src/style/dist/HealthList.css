@@ -1,0 +1,66 @@
+.healthList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  width: 900px;
+}
+.healthList .desc {
+  margin: 15px 0 15px 0;
+}
+.healthList .healthTable {
+  margin-top: 20px;
+  border-collapse: collapse;
+  border-radius: 1em;
+  overflow: hidden;
+  z-index: 1;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 15px 5px #e9e9e9;
+  padding: 10px;
+  border-style: hidden;
+}
+.healthList .healthTable .healthToptr {
+  background-color: #6392ff;
+  color: white;
+  height: 60px;
+}
+.healthList .healthTable .healthToptr th {
+  font-weight: 500;
+}
+.healthList .healthTable .healthTr {
+  border-bottom: 1px solid #e4e4e4;
+  border-radius: 13px;
+  color: #777777;
+  cursor: pointer;
+  height: 50px;
+}
+.healthList .healthTable .healthTr:hover {
+  color: black;
+}
+.healthList .healthTable .healthTr .mindTd {
+  width: 400px;
+  overflow: hidden;
+  line-height: 50px;
+  display: inline-block;
+  width: 350px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+.healthList .healthTable .healthTr .hidTd {
+  min-width: 100px;
+}
+.healthList .healthTable .healthTr .infoBtn {
+  background-color: #e3e3e3;
+  border: none;
+  border-radius: 15px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}

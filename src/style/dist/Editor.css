@@ -1,0 +1,32 @@
+.healthAdd {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.healthAdd label {
+  width: 100px;
+  background-color: aqua;
+}
+.healthAdd input, .healthAdd select {
+  width: 300px;
+  height: 30px;
+}
+.healthAdd textarea {
+  width: 300px;
+  rows: 4;
+}
+.healthAdd button {
+  width: 200px;
+  height: 30px;
+  border-radius: 10px;
+  border: none;
+  background-color: #00aeff;
+}
+
+.healthList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

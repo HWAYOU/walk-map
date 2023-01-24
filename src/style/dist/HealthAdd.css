@@ -1,0 +1,66 @@
+.healthAdd {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.healthAdd .desc {
+  margin: 15px 0 15px 0;
+}
+.healthAdd .add {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  gap: 5px;
+  margin-top: 6px;
+}
+.healthAdd .add label {
+  font-weight: bold;
+  font-size: 17px;
+}
+.healthAdd .add input, .healthAdd .add select, .healthAdd .add textarea {
+  border-radius: 7px;
+  border: none;
+  background-color: #edf2fb;
+  font-family: "Pretendard-Regular";
+}
+.healthAdd .add input:focus, .healthAdd .add textarea:focus {
+  outline-color: #6392ff;
+}
+.healthAdd .add input, .healthAdd .add select {
+  height: 40px;
+  padding: 0 10px;
+}
+.healthAdd .add select {
+  border-right: 8px solid transparent;
+}
+.healthAdd .add textarea {
+  padding: 10px;
+}
+.healthAdd .exercise, .healthAdd .time {
+  margin-bottom: 21px;
+}
+.healthAdd .button {
+  text-align: center;
+}
+.healthAdd .button button {
+  font-family: "Pretendard-Regular";
+  font-weight: bold;
+  font-size: large;
+  width: 200px;
+  height: 40px;
+  margin-top: 30px;
+  border-radius: 7px;
+  border: none;
+  background-color: #abc4ff;
+  cursor: pointer;
+}
+.healthAdd .qna-error {
+  color: red;
+  font-size: 14px;
+  width: 100%;
+  text-align: left;
+}
+.healthAdd .qna-hidden {
+  height: 16.09px;
+}
