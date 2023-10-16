@@ -5,11 +5,7 @@ const Main = () => {
   return (
     <div className="main">
       <div className="main_img">
-        <img
-          className="image"
-          src="https://images.pexels.com/photos/8330304/pexels-photo-8330304.jpeg"
-          alt="main image"
-        />
+        <img className="image" src="/img/main.jpg" alt="main img" />
       </div>
       <div className="main_text">
         <h1>
