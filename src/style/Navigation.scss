@@ -1,0 +1,27 @@
+.Navigation {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+
+  height: 70px;
+  font-size: 20px;
+  line-height: 70px;
+  box-shadow: 0 5px 10px rgba(174, 174, 174, 0.19);
+
+  .link {
+    padding: 0 15px;
+    width: 90px;
+    text-align: center;
+    font-weight: bold;
+
+    &:link,
+    &:visited {
+      color: black;
+      text-decoration: none;
+    }
+
+    &:hover {
+      color: #6392ff;
+    }
+  }
+}
