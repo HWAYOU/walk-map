@@ -1,11 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import App from "./App";
-import Main from "./component/Main";
-import HealthAdd from "./component/HealthAdd";
-import HealthInfo from "./component/HealthInfo";
-import HealthList from "./component/HealthList";
-import NotFound from "./component/NotFound";
+import Main from "./page/Main";
+import HealthAdd from "./page/HealthAdd";
+import HealthInfo from "./page/HealthInfo";
+import HealthList from "./page/HealthList";
+import NotFound from "./page/NotFound";
 
 import { db } from "./firebase";
 import { collection } from "firebase/firestore";
