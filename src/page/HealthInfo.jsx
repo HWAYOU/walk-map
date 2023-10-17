@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../style/HealthInfo.scss";
 import { HealthStateContext } from "../App";
+import MyButton from "../component/MyButton";
 
 const HealthInfo = () => {
   //✅useContex로 HealthStateContext에서 제공하는 data 받기(props로 받는 것 대신)
@@ -174,10 +175,8 @@ const HealthInfo = () => {
         </div>
 
         <div className="button">
-          <button className="updateBtn">수정</button>
-          <button type="button" className="deleteBtn" onClick={deleteData}>
-            삭제
-          </button>
+          <MyButton text={"수정"} onClick={updateDate} />
+          <MyButton type={"negative"} text={"삭제"} onClick={deleteData} />
         </div>
       </form>
     </div>

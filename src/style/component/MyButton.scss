@@ -1,0 +1,18 @@
+.MyButton {
+  font-family: "Pretendard-Regular";
+  font-weight: bold;
+  font-size: large;
+  width: 150px;
+  height: 40px;
+  margin-top: 30px;
+  padding: 10px 20px;
+  border-radius: 7px;
+  border: none;
+  background-color: #abc4ff;
+  white-space: nowrap; /* 버튼안의 글자가 두줄이 되지 않도록 */
+  cursor: pointer;
+}
+
+.MyButton_negative {
+  color: red;
+}
