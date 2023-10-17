@@ -8,9 +8,9 @@ import { db } from "./firebase";
 import { collection } from "firebase/firestore";
 
 //firebase db의 collection인 fruits를 연결하기
-// const data = collection(db, "health");
-// const data = await getDocs(healthRef);
-// console.log(db);
+const data = collection(db, "health");
+// const data = await getDocs(health);
+// console.log("data.docs : ", data.docs);
 
 export const HealthStateContext = React.createContext();
 
@@ -20,13 +20,13 @@ const App = () => {
     console.log(db);
   });
   return (
-    // <HealthStateContext.Provider value={data}>
-    <div className="app">
-      <Navigation />
-      <Outlet />
-      {/* Outlet : 중첩된 라우팅 구조에서 부모 라우트 컴포넌트 내에서 자식 라우트 컴포넌트를 렌더링하기 위해 사용 */}
-    </div>
-    // </HealthStateContext.Provider>
+    <HealthStateContext.Provider value={data}>
+      <div className="app">
+        <Navigation />
+        <Outlet />
+        {/* Outlet : 중첩된 라우팅 구조에서 부모 라우트 컴포넌트 내에서 자식 라우트 컴포넌트를 렌더링하기 위해 사용 */}
+      </div>
+    </HealthStateContext.Provider>
   );
 };
 
