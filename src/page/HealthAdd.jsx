@@ -4,10 +4,7 @@ import "../style/HealthAdd.scss";
 import { HealthStateContext } from "../App";
 import MyButton from "../component/MyButton";
 
-//db 연결한 데이터를 props로 받는다
-const HealthAdd = (props) => {
-  // const { healthRef } = props;
-
+const HealthAdd = () => {
   //✅useContex로 HealthStateContext에서 제공하는 data 받기(props로 받는 것 대신)
   const healthData = useContext(HealthStateContext);
 
@@ -209,7 +206,6 @@ const HealthAdd = (props) => {
 
         <div className="button">
           <MyButton text={"저장"} onClick={setHealth} />
-          {/* <button onClick={setHealth}>저장하기</button> */}
         </div>
       </form>
     </div>

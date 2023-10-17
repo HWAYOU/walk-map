@@ -12,9 +12,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import "../style/HealthInfo.scss";
 import { HealthStateContext } from "../App";
 
-const HealthInfo = (props) => {
-  // const { healthRef } = props;
-
+const HealthInfo = () => {
   //✅useContex로 HealthStateContext에서 제공하는 data 받기(props로 받는 것 대신)
   const healthData = useContext(HealthStateContext);
 
