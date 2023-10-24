@@ -1,7 +1,7 @@
 import "./App.scss";
 import { Outlet } from "react-router-dom";
 import React, { useEffect } from "react";
-import Navigation from "./component/Navigation";
+import MyHeader from "./component/MyHeader";
 import { getDocs } from "firebase/firestore";
 
 import { db } from "./firebase";
@@ -22,7 +22,7 @@ const App = () => {
   return (
     <HealthStateContext.Provider value={data}>
       <div className="app">
-        <Navigation />
+        <MyHeader />
         <Outlet />
         {/* Outlet : 중첩된 라우팅 구조에서 부모 라우트 컴포넌트 내에서 자식 라우트 컴포넌트를 렌더링하기 위해 사용 */}
       </div>

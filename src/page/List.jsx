@@ -1,35 +1,35 @@
 import { getDocs } from "firebase/firestore";
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import "../style/HealthList.scss";
+import "../style/page/List.scss";
 import { HealthStateContext } from "../App";
 
-const HealthList = () => {
+const List = () => {
   //✅useContex로 HealthStateContext에서 제공하는 data 받기(props로 받는 것 대신)
   const healthData = useContext(HealthStateContext);
 
   const [healthRecord, setHealthRecord] = useState([]);
-  const [healthId, setHealthId] = useState("");
+  // const [id, setid] = useState("");
 
   const navigate = useNavigate();
   //버튼을 두번 클릭해야 페이지 이동이 되는데
   //useState는 비동기적이기 때문에 변경사항이 즉시 반영되지 않는다.
 
   //경로 이동
-  const clickHandler = (healthId) => {
-    //클릭하면 해당 이벤트타겟의 value값으로 healthId가 변경
-    // setHealthId(e.target.value);
-    navigate(`/healthlist/${healthId}`);
-    //healthId에 id 저장한 이유? 상세정보 페이지로 이동하기 위해
+  const clickHandler = (id) => {
+    //클릭하면 해당 이벤트타겟의 value값으로 id가 변경
+    // setid(e.target.value);
+    navigate(`/List/${id}`);
+    //id에 id 저장한 이유? 상세정보 페이지로 이동하기 위해
   };
 
   // //해당 id의 주소로 이동한다
   // useEffect(() => {
-  //   //healthId가 변경될 때마다 실행 -> 즉, 클릭이벤트가 실행될 때마다 실행
-  //   if (healthId === undefined) {
+  //   //id가 변경될 때마다 실행 -> 즉, 클릭이벤트가 실행될 때마다 실행
+  //   if (id === undefined) {
   //   } else {
   //   }
-  // }, [healthId]);
+  // }, [id]);
 
   // 전체 리스트(데이터) 가져오기
   useEffect(() => {
@@ -87,7 +87,7 @@ const HealthList = () => {
   ));
 
   return (
-    <div className="healthList">
+    <div className="List">
       <p className="desc">
         지금까지 기록한 목록입니다. 항목 클릭 시 내용을 수정 및 삭제 할 수
         있어요.
@@ -109,4 +109,4 @@ const HealthList = () => {
   );
 };
 
-export default HealthList;
+export default List;

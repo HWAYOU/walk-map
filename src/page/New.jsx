@@ -1,10 +1,11 @@
 import React, { useRef, useState, useContext } from "react";
 import { doc, setDoc } from "firebase/firestore";
-import "../style/HealthAdd.scss";
+import "../style/page/New.scss";
 import { HealthStateContext } from "../App";
 import MyButton from "../component/MyButton";
+import MyInput from "../component/MyInput";
 
-const HealthAdd = () => {
+const New = () => {
   //✅useContex로 HealthStateContext에서 제공하는 data 받기(props로 받는 것 대신)
   const healthData = useContext(HealthStateContext);
 
@@ -70,6 +71,7 @@ const HealthAdd = () => {
     console.log(state.hid);
     //db저장
     await setDoc(doc(healthData, state.hid), {
+      //healthData 컬렉션에 state.hid 값을 가지는 문서를 생성
       // healthCollection에 {}데이터가 들어간 state.name이라는 document 추가할거다.
       hid: state.hid,
       exercise: state.exercise,
@@ -99,7 +101,7 @@ const HealthAdd = () => {
     });
   }
   return (
-    <div className="healthAdd">
+    <div className="New">
       <p className="desc">오늘의 건강을 기록해보세요.</p>
       <form>
         <div className="add date">
@@ -133,15 +135,13 @@ const HealthAdd = () => {
           </select>
         </div>
 
-        <div className="add time">
-          <label>운동시간</label>
-          <input
-            value={state.time}
-            name="time"
-            onChange={changeInput}
-            placeholder="ex) 1:20"
-          />
-        </div>
+        <MyInput
+          text={"운동시간"}
+          name={"time"}
+          value={state.time}
+          onChange={changeInput}
+          placeholder={"ex) 1:20"}
+        />
 
         <div className="add sleep">
           <label>수면시간</label>
@@ -212,4 +212,4 @@ const HealthAdd = () => {
   );
 };
 
-export default HealthAdd;
+export default New;

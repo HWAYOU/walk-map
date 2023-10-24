@@ -9,11 +9,11 @@ import {
 import React, { useState, useContext } from "react";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import "../style/HealthInfo.scss";
+import "../style/page/Detail.scss";
 import { HealthStateContext } from "../App";
 import MyButton from "../component/MyButton";
 
-const HealthInfo = () => {
+const Detail = () => {
   //✅useContex로 HealthStateContext에서 제공하는 data 받기(props로 받는 것 대신)
   const healthData = useContext(HealthStateContext);
 
@@ -26,21 +26,21 @@ const HealthInfo = () => {
   const [water, setWater] = useState();
   const [mind, setMind] = useState();
 
-  // 상단 주소에 있는 healthId 가져오기
+  // 상단 주소에 있는 id 가져오기
   //useParams : url에 포함되어 있는 파라미터 값을 가져와서 사용할 수 있다.
-  const { healthId } = useParams();
+  const { id } = useParams();
 
   //데이터베이스에서 제품 상세정보 가져오기(query, where로 조건 검색하기)
   useEffect(() => {
     async function getHealth() {
       //필드 조건
       //await query? 쿼리만 해도 가능하긴하지만 조건 데이터를 들고올때까지 기다리려고
-      const data = await query(healthData, where("hid", "==", healthId));
+      const data = await query(healthData, where("hid", "==", id));
 
       //전체데이터 가져오기
       const querySnapshot = await getDocs(data);
 
-      //id가 healthId인 제품의 정보 하나씩 빼서 item에 저장
+      //id가 id인 제품의 정보 하나씩 빼서 item에 저장
       //item.data() : field 값
       querySnapshot.forEach((item) => {
         setHid(item.data().hid);
@@ -105,7 +105,7 @@ const HealthInfo = () => {
   // value가 undefined => error가 난다. 그래서 value=""으로라도 넣어주기
 
   return (
-    <div className="healthInfo">
+    <div className="Detail">
       <p className="desc">기록을 수정 또는 삭제할 수 있습니다.</p>
       <form onSubmit={submitHandler}>
         <div className="info date">
@@ -183,4 +183,4 @@ const HealthInfo = () => {
   );
 };
 
-export default HealthInfo;
+export default Detail;

@@ -1,14 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "../style/Navigation.scss";
+import "../style/component/MyHeader.scss";
 
-const Navigation = () => {
+const MyHeader = () => {
   const activeStyle = {
     color: "#6392ff",
   };
 
   return (
-    <div className="Navigation">
+    <div className="MyHeader">
       <NavLink
         className="link"
         style={({ isActive }) => (isActive ? activeStyle : {})}
@@ -20,7 +20,7 @@ const Navigation = () => {
       <NavLink
         className="link"
         style={({ isActive }) => (isActive ? activeStyle : {})}
-        to="/healthadd"
+        to="/new"
       >
         건강기록
       </NavLink>
@@ -28,7 +28,7 @@ const Navigation = () => {
       <NavLink
         className="link"
         style={({ isActive }) => (isActive ? activeStyle : {})}
-        to="/healthlist"
+        to="/list"
       >
         기록관리
       </NavLink>
@@ -36,4 +36,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default MyHeader;
