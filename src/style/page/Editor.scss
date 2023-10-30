@@ -1,0 +1,11 @@
+.New,
+.Detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .desc {
+    margin: 15px 0 15px 0;
+  }
+}

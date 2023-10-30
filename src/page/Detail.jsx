@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { HealthStateContext } from "../App";
 import HealthEditor from "../component/HealthEditor";
-import "../style/page/Detail.scss";
+import "../style/page/Editor.scss";
 
 const Detail = () => {
   //✅useContex로 HealthStateContext에서 제공하는 data 받기(props로 받는 것 대신)

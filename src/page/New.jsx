@@ -1,6 +1,6 @@
 import React from "react";
 import HealthEditor from "../component/HealthEditor";
-import "../style/page/New.scss";
+import "../style/page/Editor.scss";
 
 const New = () => {
   return (

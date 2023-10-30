@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import MyButton from "../component/MyButton";
 import { HealthDispatchContext } from "../App";
-import "../style/page/New.scss";
-import "../style/page/Detail.scss";
+import "../style/component/HealthEditor.scss";
 
 const HealthEditor = ({ isEdit, originData }) => {
   const { onCreate, onEdit, onRemove } = useContext(HealthDispatchContext);
@@ -134,7 +133,7 @@ const HealthEditor = ({ isEdit, originData }) => {
 
   return (
     <form>
-      <div className="add date">
+      <div className="inputBox date">
         <label>일자</label>
         <input
           type="date"
@@ -146,7 +145,7 @@ const HealthEditor = ({ isEdit, originData }) => {
         {displayError("date")}
       </div>
 
-      <div className="add exercise">
+      <div className="inputBox exercise">
         <label>운동</label>
         <select name="exercise" value={state.exercise} onChange={changeInput}>
           <option value={8}>안함</option>
@@ -157,31 +156,31 @@ const HealthEditor = ({ isEdit, originData }) => {
         </select>
       </div>
 
-      <div className="add time">
-        <label>운동시간</label>
+      <div className="inputBox exerciseTime">
+        <label>운동시간(시간)</label>
         <input
           value={state.time}
           ref={inputRefs.time}
           name="time"
           onChange={changeInput}
-          placeholder="ex) 1:20"
+          placeholder="ex) 1.5"
         />
         {displayError("time")}
       </div>
 
-      <div className="add sleep">
-        <label>수면시간</label>
+      <div className="inputBox sleep">
+        <label>수면시간(시간)</label>
         <input
           value={state.sleep}
           ref={inputRefs.sleep}
           name="sleep"
           onChange={changeInput}
-          placeholder="ex) 7:30"
+          placeholder="ex) 6.5"
         />
         {displayError("sleep")}
       </div>
 
-      <div className="add sleep">
+      <div className="inputBox water">
         <label>수분섭취(ml)</label>
         <input
           value={state.water}
@@ -193,7 +192,7 @@ const HealthEditor = ({ isEdit, originData }) => {
         {displayError("water")}
       </div>
 
-      <div className="add sleep">
+      <div className="inputBox mind">
         <label>마음건강</label>
         <textarea
           rows="4"
@@ -206,9 +205,11 @@ const HealthEditor = ({ isEdit, originData }) => {
         {displayError("mind")}
       </div>
 
-      <div className="button">
+      <div className="buttonBox">
         <MyButton text={"저장"} onClick={handleSubmit} />
-        <MyButton text={"삭제"} onClick={handleRemove} />
+        {isEdit && (
+          <MyButton type={"negative"} text={"삭제"} onClick={handleRemove} />
+        )}
       </div>
     </form>
   );
