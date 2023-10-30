@@ -1,9 +1,16 @@
 import React, { useEffect, useRef, useReducer } from "react";
 import { Outlet } from "react-router-dom";
+import {
+  getDocs,
+  setDoc,
+  updateDoc,
+  deleteDoc,
+  doc,
+  collection,
+} from "firebase/firestore";
+import { db } from "./firebase";
 import MyHeader from "./component/MyHeader";
 import "./App.scss";
-import { getDocs, setDoc, doc, collection } from "firebase/firestore";
-import { db } from "./firebase";
 
 const reducer = (state, action) => {
   let newState = [];
@@ -17,12 +24,13 @@ const reducer = (state, action) => {
     }
     case "REMOVE": {
       newState = state.filter((it) => it.hid !== action.targetId);
+      console.log(action);
       break;
     }
     case "EDIT": {
       newState = state.map((it) =>
         //action.data.hid에서 받은 id와 일치하는 데이터라면 action.data를 그대로 돌려주고, 아닌 데이터라면 그 데이터 그대로
-        it.hid === action.data.hid ? { ...action.data } : it
+        it.hid === action.date.hid ? { ...action.date } : it
       );
       break;
     }
@@ -88,13 +96,19 @@ const App = () => {
     dataId.current += 1;
   };
 
-  //✅데이터 삭제함수
-  const onRemove = (targetId) => {
-    dispatch({ type: "REMOVE", targetId });
-  };
-
   //✅데이터 수정함수
-  const onEdit = (targetId, date, exercise, time, sleep, water, mind) => {
+  const onEdit = async (targetId, date, exercise, time, sleep, water, mind) => {
+    const docRef = doc(db, "health", targetId.toString());
+
+    await updateDoc(docRef, {
+      date,
+      exercise,
+      time,
+      sleep,
+      water,
+      mind,
+    });
+
     dispatch({
       type: "EDIT",
       date: {
@@ -107,6 +121,13 @@ const App = () => {
         mind,
       },
     });
+  };
+
+  //✅데이터 삭제함수
+  const onRemove = async (targetId) => {
+    const docRef = doc(db, "health", targetId.toString());
+    await deleteDoc(docRef);
+    dispatch({ type: "REMOVE", targetId });
   };
 
   return (

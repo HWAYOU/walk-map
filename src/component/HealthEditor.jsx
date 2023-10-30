@@ -1,12 +1,22 @@
-import React, { useContext, useState, useRef } from "react";
+import React, { useContext, useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "../style/page/New.scss";
-import MyButton from "../component/MyButton";
-import MyInput from "../component/MyInput";
-import { HealthDispatchContext } from "../App";
 
-const HealthEditor = () => {
+import MyButton from "../component/MyButton";
+import { HealthDispatchContext } from "../App";
+import "../style/page/New.scss";
+import "../style/page/Detail.scss";
+
+const HealthEditor = ({ isEdit, originData }) => {
   const { onCreate, onEdit, onRemove } = useContext(HealthDispatchContext);
+  const navigate = useNavigate();
+
+  //각각 useRef 선언했던 것을 객체로 묶음
+  const inputRefs = {
+    date: useRef(),
+    sleep: useRef(),
+    water: useRef(),
+    mind: useRef(),
+  };
 
   const [state, setState] = useState({
     date: "",
@@ -24,22 +34,12 @@ const HealthEditor = () => {
     mind: false,
   });
 
-  const navigate = useNavigate();
-
-  //각각 useRef 선언했던 것을 객체로 묶음
-  const inputRefs = {
-    date: useRef(),
-    sleep: useRef(),
-    water: useRef(),
-    mind: useRef(),
-  };
-
   //input 값 변경 시 setState함수 실행하여 새로운 value 저장
   function changeInput(e) {
     setState({ ...state, [e.target.name]: e.target.value });
   }
 
-  //오류처리 함수
+  //✅오류처리 함수
   const displayError = (field) => {
     if (error[field]) {
       //✨객체에 접근할때 1. 대괄호 표기법(field 변수 값이 동적일 경우) 2. 점 표기법(field라는 정확한 속성명을 사용할 경우)
@@ -53,7 +53,7 @@ const HealthEditor = () => {
     }
   };
 
-  //데이터 추가(create)
+  //✅작성완료 클릭 시
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -77,18 +77,60 @@ const HealthEditor = () => {
       return;
     }
 
-    onCreate(
-      state.date,
-      state.exercise,
-      state.time,
-      state.sleep,
-      state.water,
-      state.mind
-    );
+    //데이터 수정 및 추가
+    if (
+      window.confirm(
+        isEdit ? "건강기록을 수정하시겠습니까?" : "건강기록을 추가하시겠습니까?"
+      )
+    ) {
+      if (!isEdit) {
+        onCreate(
+          state.date,
+          state.exercise,
+          state.time,
+          state.sleep,
+          state.water,
+          state.mind
+        );
+      } else {
+        onEdit(
+          originData.hid,
+          state.date,
+          state.exercise,
+          state.time,
+          state.sleep,
+          state.water,
+          state.mind
+        );
+      }
+    }
 
-    alert("기록이 추가 되었습니다.");
     navigate("/list", { replace: true }); //replace: true 작성 완료 후 뒤로가기 안됨
   }
+
+  //✅삭제버튼 클릭 시
+  const handleRemove = () => {
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      onRemove(originData.hid);
+      console.log("이거슨삭제");
+      navigate("/list", { replace: true });
+    }
+  };
+
+  //✅isEdit가 true이면(수정상태이면) 데이터 state에 originalData를 넣어준다.
+  //의존성 배열에 isEdit, originData를 넣어주면 input에 들어있는 상태를 변경할 수 있다
+  useEffect(() => {
+    if (isEdit) {
+      setState({
+        date: originData.date,
+        exercise: originData.exercise,
+        time: originData.time,
+        sleep: originData.sleep,
+        water: originData.water,
+        mind: originData.mind,
+      });
+    }
+  }, [isEdit, originData]);
 
   return (
     <form>
@@ -115,13 +157,17 @@ const HealthEditor = () => {
         </select>
       </div>
 
-      <MyInput
-        text={"운동시간"}
-        name={"time"}
-        value={state.time}
-        onChange={changeInput}
-        placeholder={"ex) 1:20"}
-      />
+      <div className="add time">
+        <label>운동시간</label>
+        <input
+          value={state.time}
+          ref={inputRefs.time}
+          name="time"
+          onChange={changeInput}
+          placeholder="ex) 1:20"
+        />
+        {displayError("time")}
+      </div>
 
       <div className="add sleep">
         <label>수면시간</label>
@@ -162,6 +208,7 @@ const HealthEditor = () => {
 
       <div className="button">
         <MyButton text={"저장"} onClick={handleSubmit} />
+        <MyButton text={"삭제"} onClick={handleRemove} />
       </div>
     </form>
   );
