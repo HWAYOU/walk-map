@@ -1,11 +1,9 @@
-import "./App.scss";
-import { Outlet } from "react-router-dom";
 import React, { useEffect, useRef, useReducer } from "react";
+import { Outlet } from "react-router-dom";
 import MyHeader from "./component/MyHeader";
-
-import { getDocs } from "firebase/firestore";
+import "./App.scss";
+import { getDocs, setDoc, doc, collection } from "firebase/firestore";
 import { db } from "./firebase";
-import { collection } from "firebase/firestore";
 
 const reducer = (state, action) => {
   let newState = [];
@@ -66,11 +64,27 @@ const App = () => {
   }, []);
 
   //✅새로운 데이터를 받아서 건강기록객체(data)로 만들어준다
-  const onCreate = (exercise, time, sleep, water, mind) => {
+  const onCreate = async (date, exercise, time, sleep, water, mind) => {
+    // Firestore 문서 참조 : firebase db의 health라는 컬렉션에 dataId를 고유ID로 가지는 문서
+    const docRef = doc(db, "health", dataId.current.toString());
+    const data = {
+      hid: dataId.current,
+      date,
+      exercise,
+      time,
+      sleep,
+      water,
+      mind,
+    };
+    await setDoc(docRef, data); //docRef 이 문서에 data 값 저장
+
+    // firebase에 데이터 추가 후 상태 업데이트
     dispatch({
       type: "CREATE",
-      data: { hid: dataId.current, exercise, time, sleep, water, mind },
+      data: { hid: dataId.current, ...data },
     });
+
+    // dataId 업데이트
     dataId.current += 1;
   };
 
@@ -80,11 +94,12 @@ const App = () => {
   };
 
   //✅데이터 수정함수
-  const onEdit = (targetId, exercise, time, sleep, water, mind) => {
+  const onEdit = (targetId, date, exercise, time, sleep, water, mind) => {
     dispatch({
       type: "EDIT",
       date: {
         hid: targetId,
+        date,
         exercise,
         time,
         sleep,
