@@ -5,7 +5,7 @@ const Main = () => {
   return (
     <div className="main">
       <div className="main_img">
-        <img className="image" src="/img/main.jpg" alt="main img" />
+        <img className="image" src="/main.jpg" alt="main img" />
       </div>
       <div className="main_text">
         <h1>
