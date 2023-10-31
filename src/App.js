@@ -24,7 +24,6 @@ const reducer = (state, action) => {
     }
     case "REMOVE": {
       newState = state.filter((it) => it.hid !== action.targetId);
-      console.log(action);
       break;
     }
     case "EDIT": {

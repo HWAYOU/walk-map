@@ -111,7 +111,6 @@ const HealthEditor = ({ isEdit, originData }) => {
   const handleRemove = () => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
       onRemove(originData.hid);
-      console.log("이거슨삭제");
       navigate("/list", { replace: true });
     }
   };
